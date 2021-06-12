@@ -122,8 +122,8 @@ struct Monitor {
 	unsigned int seltags;
 	unsigned int sellt;
 	unsigned int tagset[2];
-	int showbar;
-	int topbar;
+	//int showbar;
+	//int topbar;
 	Client *clients;
 	Client *sel;
 	Client *stack;
@@ -160,14 +160,14 @@ static Monitor *createmon(void);
 static void destroynotify(XEvent *e);
 static void detach(Client *c);
 static void detachstack(Client *c);
-static Monitor *dirtomon(int dir);
+//static Monitor *dirtomon(int dir);
 static void drawbar(Monitor *m);
 static void drawbars(void);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
 static void focusin(XEvent *e);
-static void focusmon(const Arg *arg);
+//static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
 static Atom getatomprop(Client *c, Atom prop);
 static int getrootptr(int *x, int *y);
@@ -208,9 +208,9 @@ static void showhide(Client *c);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
 static void tag(const Arg *arg);
-static void tagmon(const Arg *arg);
+//static void tagmon(const Arg *arg);
 static void tile(Monitor *);
-static void togglebar(const Arg *arg);
+//static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
@@ -637,8 +637,8 @@ createmon(void)
 	m->tagset[0] = m->tagset[1] = 1;
 	m->mfact = mfact;
 	m->nmaster = nmaster;
-	m->showbar = showbar;
-	m->topbar = topbar;
+	//m->showbar = showbar;
+	//m->topbar = topbar;
 	m->lt[0] = &layouts[0];
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
 	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
@@ -678,20 +678,20 @@ detachstack(Client *c)
 	}
 }
 
-Monitor *
-dirtomon(int dir)
-{
-	Monitor *m = NULL;
-
-	if (dir > 0) {
-		if (!(m = selmon->next))
-			m = mons;
-	} else if (selmon == mons)
-		for (m = mons; m->next; m = m->next);
-	else
-		for (m = mons; m->next != selmon; m = m->next);
-	return m;
-}
+//Monitor *
+//dirtomon(int dir)
+//{
+//	Monitor *m = NULL;
+//
+//	if (dir > 0) {
+//		if (!(m = selmon->next))
+//			m = mons;
+//	} else if (selmon == mons)
+//		for (m = mons; m->next; m = m->next);
+//	else
+//		for (m = mons; m->next != selmon; m = m->next);
+//	return m;
+//}
 
 void
 drawbar(Monitor *m)
@@ -816,19 +816,19 @@ focusin(XEvent *e)
 		setfocus(selmon->sel);
 }
 
-void
-focusmon(const Arg *arg)
-{
-	Monitor *m;
-
-	if (!mons->next)
-		return;
-	if ((m = dirtomon(arg->i)) == selmon)
-		return;
-	unfocus(selmon->sel, 0);
-	selmon = m;
-	focus(NULL);
-}
+//void
+//focusmon(const Arg *arg)
+//{
+//	Monitor *m;
+//
+//	if (!mons->next)
+//		return;
+//	if ((m = dirtomon(arg->i)) == selmon)
+//		return;
+//	unfocus(selmon->sel, 0);
+//	selmon = m;
+//	focus(NULL);
+//}
 
 void
 focusstack(const Arg *arg)
@@ -1640,8 +1640,8 @@ sigchld(int unused)
 void
 spawn(const Arg *arg)
 {
-	if (arg->v == dmenucmd)
-		dmenumon[0] = '0' + selmon->num;
+	//if (arg->v == dmenucmd)
+	//	dmenumon[0] = '0' + selmon->num;
 	if (fork() == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
@@ -1663,13 +1663,13 @@ tag(const Arg *arg)
 	}
 }
 
-void
-tagmon(const Arg *arg)
-{
-	if (!selmon->sel || !mons->next)
-		return;
-	sendmon(selmon->sel, dirtomon(arg->i));
-}
+//void
+//tagmon(const Arg *arg)
+//{
+//	if (!selmon->sel || !mons->next)
+//		return;
+//	sendmon(selmon->sel, dirtomon(arg->i));
+//}
 
 void
 tile(Monitor *m)
@@ -1699,14 +1699,14 @@ tile(Monitor *m)
 		}
 }
 
-void
-togglebar(const Arg *arg)
-{
-	selmon->showbar = !selmon->showbar;
-	updatebarpos(selmon);
-	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
-	arrange(selmon);
-}
+//void
+//togglebar(const Arg *arg)
+//{
+//	selmon->showbar = !selmon->showbar;
+//	updatebarpos(selmon);
+//	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
+//	arrange(selmon);
+//}
 
 void
 togglefloating(const Arg *arg)
@@ -1828,11 +1828,11 @@ updatebarpos(Monitor *m)
 {
 	m->wy = m->my;
 	m->wh = m->mh;
-	if (m->showbar) {
-		m->wh -= bh;
-		m->by = m->topbar ? m->wy : m->wy + m->wh;
-		m->wy = m->topbar ? m->wy + bh : m->wy;
-	} else
+	//if (m->showbar) {
+	//	m->wh -= bh;
+	//	m->by = m->topbar ? m->wy : m->wy + m->wh;
+	//	m->wy = m->topbar ? m->wy + bh : m->wy;
+	//} else
 		m->by = -bh;
 }
 
