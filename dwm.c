@@ -211,7 +211,7 @@ static void tag(const Arg *arg);
 //static void tagmon(const Arg *arg);
 static void tile(Monitor *);
 //static void togglebar(const Arg *arg);
-static void togglefloating(const Arg *arg);
+static void tofloat(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -1179,7 +1179,7 @@ movemouse(const Arg *arg)
 				ny = selmon->wy + selmon->wh - HEIGHT(c);
 			if (!c->isfloating && selmon->lt[selmon->sellt]->arrange
 			&& (abs(nx - c->x) > snap || abs(ny - c->y) > snap))
-				togglefloating(NULL);
+				tofloat(NULL);
 			if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
 				resize(c, nx, ny, c->w, c->h, 1);
 			break;
@@ -1328,7 +1328,7 @@ resizemouse(const Arg *arg)
 			{
 				if (!c->isfloating && selmon->lt[selmon->sellt]->arrange
 				&& (abs(nw - c->w) > snap || abs(nh - c->h) > snap))
-					togglefloating(NULL);
+					tofloat(NULL);
 			}
 			if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
 				resize(c, c->x, c->y, nw, nh, 1);
@@ -1709,7 +1709,7 @@ tile(Monitor *m)
 //}
 
 void
-togglefloating(const Arg *arg)
+tofloat(const Arg *arg)
 {
 	if (!selmon->sel)
 		return;
