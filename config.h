@@ -1,6 +1,6 @@
 static const unsigned int borderpx  = 1; 
 static const unsigned int snap      = 32;
-static const char *fonts[]          = { "IBMPlexMono:size=13" };
+static const char *fonts[]          = { "Hermit:size=13" };
 static const char col_black[]       = "#000000";
 static const char col_gray1[]       = "#202020";
 static const char col_gray2[]       = "#404040";
