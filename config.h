@@ -52,6 +52,7 @@ static Key keys[] = {
 	{ MODKEY,           XK_d,       spawn,      CMD("dmenu_run") },
 	{ MODKEY|ShiftMask, XK_Return,  spawn,      CMD("tmux new-session -d; pkill st; st -e tmux a") },
 	{ MODKEY,           XK_e,       spawn,      CMD("clipmenu") },
+	{ MODKEY,           XK_a,       spawn,      CMD("remaps") },
 	{ MODKEY,           XK_p,       spawn,      CMD("passmenu") },
 	{ MODKEY|ShiftMask, XK_p,       spawn,      CMD("pwgen") },
 	{ MODKEY,           XK_7,       spawn,      CMD("amixer set 'Master' 5%-") },
